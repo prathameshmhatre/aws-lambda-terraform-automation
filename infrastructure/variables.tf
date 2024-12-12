@@ -4,11 +4,6 @@ variable "aws_region" {
   
 }
 
-variable "aws_profile" {
-  description = "The AWS profile to use"
-  type        = string
-}
-
 
 variable "lambda_name" {
   description = "Name of the Lambda function"
