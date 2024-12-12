@@ -64,6 +64,7 @@ jobs:
           TF_VAR_environment: "dev"
           TF_VAR_lambda_zip_file: "lambda.zip"
           TF_VAR_rest_api_name: "dev-api-gateway"
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
         run: |
           cd infrastructure
           terraform plan
@@ -76,6 +77,7 @@ jobs:
           TF_VAR_environment: "dev"
           TF_VAR_lambda_zip_file: "lambda.zip"
           TF_VAR_rest_api_name: "dev-api-gateway"
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
         run: |
           cd infrastructure
           terraform apply -auto-approve
