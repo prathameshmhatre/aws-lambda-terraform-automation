@@ -47,9 +47,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Terraform init
         run: |
@@ -57,14 +57,28 @@ jobs:
           terraform init -backend-config=environments/dev/backend-config.hcl
 
       - name: Terraform plan
+        env:
+          TF_VAR_lambda_name: "hello-world"
+          TF_VAR_handler: "index.handler"
+          TF_VAR_runtime: "nodejs14.x"
+          TF_VAR_environment: "dev"
+          TF_VAR_lambda_zip_file: "lambda.zip"
+          TF_VAR_rest_api_name: "dev-api-gateway"
         run: |
           cd infrastructure
-          terraform plan -var-file=environments/dev/terraform.tfvars
+          terraform plan
 
       - name: Terraform apply
+        env:
+          TF_VAR_lambda_name: "hello-world"
+          TF_VAR_handler: "index.handler"
+          TF_VAR_runtime: "nodejs14.x"
+          TF_VAR_environment: "dev"
+          TF_VAR_lambda_zip_file: "lambda.zip"
+          TF_VAR_rest_api_name: "dev-api-gateway"
         run: |
           cd infrastructure
-          terraform apply -var-file=environments/dev/terraform.tfvars -auto-approve
+          terraform apply -auto-approve
 
   notify:
     name: Notify success/failure
