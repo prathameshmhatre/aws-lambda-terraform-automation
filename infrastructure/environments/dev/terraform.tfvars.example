@@ -1,0 +1,8 @@
+
+lambda_name          = "hello-world"
+handler              = "index.handler"
+runtime              = "nodejs14.x"
+environment          = "dev"
+lambda_zip_file      = "lambda.zip"
+
+rest_api_name        = "dev-api-gateway"

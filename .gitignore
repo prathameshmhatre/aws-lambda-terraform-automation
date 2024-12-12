@@ -1,4 +1,9 @@
-
-terraform.tfstate*
-.terraform/
-*.zip
+// git ignore file for terraform files
+// Terraform files
+*.tfstate
+*.tfstate.backup
+*.tfvars
+environments/dev/terraform.tfvars
+*.tfplan
+*.terraform
+.terraform.lock.hcl

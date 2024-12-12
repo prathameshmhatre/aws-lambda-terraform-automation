@@ -14,17 +14,21 @@ variable "runtime" {
   type        = string
 }
 
-variable "lambda_role_arn" {
-  description = "IAM Role ARN for Lambda"
+variable "environment" {
+  description = "Environment to deploy to"
   type        = string
+  
 }
 
-variable "lambda_package_path" {
-  description = "Path to the zipped Lambda function code"
+variable "lambda_zip_file" {
+  description = "The name of the zip file containing the Lambda function code."
   type        = string
+  default     = "lambda.zip"
 }
 
-variable "environment_variables" {
-  description = "Environment variables for Lambda"
-  type        = map(string)
+variable "lambda_timeout" {
+  description = "The amount of time in seconds that Lambda has to run your code."
+  type        = number
+  default     = 10
+  
 }
